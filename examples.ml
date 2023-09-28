@@ -33,7 +33,7 @@ let rec for_to_do i j (f : int -> unit) =
   in : n
   out : n!
  *)
-let iterfact n =     (* x is an accumulator *)
+let ifact n =     (* x is an accumulator *)
   let x = ref 1 in
   (for i = 0 to (n-1) do
      x := (!x * (n-i))
@@ -46,7 +46,7 @@ let iterfact n =     (* x is an accumulator *)
   in : n
   out : n!
  *)
-let iterfact n =
+let ifact n =
   let x = ref 1 in    (* x is an accumulator *)
   (for_to_do 0 (n-1)
      (fun i -> x := (!x * (n-i)));
