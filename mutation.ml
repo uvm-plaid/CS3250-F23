@@ -51,12 +51,37 @@ type 'a option = None | Some of 'a;;
 (* this version of factorial handles exception by providing optional result *)
 let fact_option n = try Some(fact n) with Negative -> None;;
 
-(* encoding a for loop with recursion *)
-let rec for_to_do j k f = 
-  	if j > k then () else (f j; for_to_do (j+1) k f)
+(*
+  for_to_do : int -> int -> (int -> unit) -> unit
+  in : loop bounds i and j, loop body procedure f
+  out : unit
+  mutates : whatever f mutates
+ *)
+let rec for_to_do i j (f : int -> unit) =
+  if i >= j then () else (f i; for_to_do (i+1) j f)
 
-(* factorial in the procedural style *)
-let fact n =
-	let soln = ref 1 in 
-  	(for_to_do 1 n (fun i -> soln := (!soln * i)); 
-   	 !soln)
+(* This iterative version of factorial uses a primitive for loop *)
+(* 
+  ifact : int -> int
+  in : n
+  out : n!
+ *)
+let ifact n =    
+  let x = ref 1 in     (* x is an accumulator *)
+  (for i = 0 to (n-1) do
+     x := (!x * (n-i))
+   done;
+   !x)
+
+(* This iterative version of factorial uses a for loop encoded recursively *)
+(* 
+  ifact : int -> int      
+  in : n
+  out : n!
+ *)
+let ifact n =
+  let x = ref 1 in    (* x is an accumulator *)
+  (for_to_do 0 (n-1)
+     (fun i -> x := (!x * (n-i)));
+   !x)
+   
