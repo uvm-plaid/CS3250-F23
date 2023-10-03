@@ -29,7 +29,7 @@ let rec for_to_do i j (f : int -> unit) =
 
 (* This iterative version of factorial uses a primitive for loop *)
 (* 
-  iterfact : int -> int
+  ifact : int -> int
   in : n
   out : n!
  *)
@@ -42,7 +42,7 @@ let ifact n =
 
 (* This iterative version of factorial uses a for loop encoded recursively *)
 (* 
-  iterfact : int -> int      
+  ifact : int -> int      
   in : n
   out : n!
  *)
