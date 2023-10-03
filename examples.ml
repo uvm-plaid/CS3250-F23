@@ -18,36 +18,41 @@ let eq x y = x = y
 
 let compose f g = (fun x -> f(g(x)))
 
-(*
-  for_to_do : int -> int -> (int -> unit) -> unit
-  in : loop bounds i and j, loop body procedure f
-  out : unit
-  mutates : whatever f mutates
- *)
-let rec for_to_do i j (f : int -> unit) =
-  if i >= j then () else (f i; for_to_do (i+1) j f)
+let rec double_all l = 
+	 match l with
+	    [] -> []
+	  | x::xs -> (2 * x) :: (double_all xs);;
+    
+let rec float_all l = 
+	 match l with
+	    [] -> []
+	  | x::xs -> (float x) :: (float_all xs);;
+    
+let rec map f l = 
+	 match l with
+	    [] -> []
+	  | x::xs -> (f x) :: (map f xs);;
+    
+map (fun x -> 2 * x) [1;2;3;4];;
 
-(* This iterative version of factorial uses a primitive for loop *)
-(* 
-  ifact : int -> int
-  in : n
-  out : n!
- *)
-let ifact n =    
-  let x = ref 1 in     (* x is an accumulator *)
-  (for i = 0 to (n-1) do
-     x := (!x * (n-i))
-   done;
-   !x)
+map (fun x -> float x) [1;2;3;4];;
 
-(* This iterative version of factorial uses a for loop encoded recursively *)
-(* 
-  ifact : int -> int      
-  in : n
-  out : n!
- *)
-let ifact n =
-  let x = ref 1 in    (* x is an accumulator *)
-  (for_to_do 0 (n-1)
-     (fun i -> x := (!x * (n-i)));
-   !x)
+let double_all = map (fun x -> 2 * x);;
+
+let float_all = map float;;
+
+let graph = [(1.1,3.7);(6.2,9.4);(5.5,3.8)];;
+
+let xcoords l = map (fun (x,y) -> y) l;;
+
+type student = { name : string; email : string; gpa : float};;
+
+let bob = { name = "bob"; email = "bob@uvm.edu"; gpa = 3.2};;
+    
+type rt = {a: int; b: bool};;
+
+let rv = { a = 1 + 2; b = not true };;
+
+type ('a,'b) pair = { first: 'a; second: 'b; };;
+
+let p = { first = 5; second = (fun x -> x + 1 ) };;
