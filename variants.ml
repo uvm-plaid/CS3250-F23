@@ -1,12 +1,12 @@
-type 'a plist = Nil | Cons of 'a * 'a plist
+type 'a plist = Nil | Cons of 'a * 'a plist;;
 
 let rec pmap f pl = match pl with
     Nil -> Nil
-  | (Cons (x,xs)) -> Cons (f x, pmap f xs) 
+  | (Cons (x,xs)) -> (Cons (f x, pmap f xs));;
 
-(Cons ('l', Cons ('i', Cons ('s', Cons ('t', Nil))))) 
+(Cons ('l', Cons ('i', Cons ('s', Cons ('t', Nil))))) ;;
 
-(Cons (3, Cons (1, Cons (7, Nil)))) 
+(Cons (3, Cons (1, Cons (7, Nil)))) ;;
 
 type 'a tree = Leaf | Node of 'a tree * 'a * 'a tree;;
 
