@@ -9,6 +9,18 @@
 
 (* Problem 1 *)
 
+type nat = Zero | Succ of nat
+
+(* 
+   sum : nat -> nat -> nat
+   in : nats n1 and n2 
+   out : nat that denotes n1 + n2
+*)
+let rec sum n1 n2 =
+  match n1 with
+    Zero -> n2
+  | (Succ n) -> Succ(sum n n2)
+
 (* 
    mult : nat -> nat -> nat
    in : pair (x, y) where x denotes a number n1 and y denotes n2
