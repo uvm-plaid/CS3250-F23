@@ -66,7 +66,7 @@ type 'a tree = Leaf | Node of 'a tree * 'a * 'a tree
 
 (*
   lookup : ('a * 'a -> bool) -> 'a -> 'a tree -> bool
-  in : total order lt, element x, tree t possessing 
+  in : strict total order lt, element x, tree t possessing 
        BST property
   out : true iff x is in t
 *)
@@ -74,7 +74,7 @@ let rec lookup lt x t = false (* COMPLETE ME *)
 	
 (*
   insert : ('a * 'a -> bool) -> 'a -> 'a tree -> 'a tree
-  in : total order lt, element x, tree t possessing 
+  in : strict total order lt, element x, tree t possessing 
        BST property
   out : tree t' which is t with x inserted such that t' 
         possesses BST property 
