@@ -2,7 +2,6 @@
    The BOOL interpreter: back-end and pretty printing. 
  *)
 
-
 (* The AST datatype for BOOL *)
 type expr =
      (* boolean expression forms *)
