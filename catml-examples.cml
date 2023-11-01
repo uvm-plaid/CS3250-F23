@@ -1,0 +1,7 @@
+Let x = 3 + 4 In 9 + x
+
+Let x = 3 + 4 In Not x
+
+Let x = 10 In Let x = (x = 5) In Not x
+
+True Or 78
