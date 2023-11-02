@@ -49,7 +49,8 @@ exception NotReducible
 (* 
    redx : expr -> expr
    in : AST [[e]]
-   out : AST [[e']] such that e -> e' in the operational semantics
+   out : AST [[e']] such that e -> e' in the operational semantics, with the stipulation that
+   short-circuiting of boolean operations is allowed.
    side effect : exception NotReducible raised if [[e]] isn't reducible in implementation
    (this should be the case if e is a value or is stuck).
    NOTE : This function is incomplete for ARITH.
