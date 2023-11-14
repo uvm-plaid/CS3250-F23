@@ -29,6 +29,41 @@ let elet = Let(Ident("x"), Nat(12), Minus(Var(Ident("x")), Nat(10)))
 let p2let = Let(Ident("f"), plus2, Appl(Var(Ident("f")), Nat(32)))
 
 (*
+ Let f = (Fun x . x + 2) In f ((f 32) + (f 8))
+ *)
+Let (
+  Ident "f",
+  Function (
+    Ident "x",
+    Plus (
+      Var (
+        Ident "x"
+      ),
+      Nat 2
+    )
+  ),
+  Appl (
+    Var (
+      Ident "f"
+    ),
+    Plus (
+      Appl (
+        Var (
+          Ident "f"
+        ),
+        Nat 32
+      ),
+      Appl (
+        Var (
+          Ident "f"
+        ),
+        Nat 8
+      )
+    )
+  )
+) 
+
+(*
  (Fun f . (Fun g . (Fun x . f (g x))))
 *) 
 let compose = 
