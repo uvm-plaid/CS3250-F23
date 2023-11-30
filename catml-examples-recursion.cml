@@ -15,17 +15,21 @@ Let s = (Fun summate . Fun n . If n = 0 Then 0 Else n + (summate (n - 1))) In
 Let summate = (zcomb s) In
 summate 5 
 
-(* Multiplication as the iteration of addition using Z *)
+(* Curried version of multiplication as the iteration of addition using Z *)
 Let zcomb = (Fun f . (Fun x . f (Fun v . (x x) v)) (Fun x . f (Fun v . (x x) v))) In
 Let m = (Fun mult . Fun x . Fun y . If y = 0 Then 0 Else x + ((mult x) (y - 1))) In
 Let mult = (zcomb m) In
 (mult 6) 9 + (mult 3) 2 
 
-(* Uncurried Version of Multiplication *)
+(* Uncurried Version of multiplication *)
 Let zcomb = (Fun f . (Fun x . f (Fun v . (x x) v)) (Fun x . f (Fun v . (x x) v))) In
 Let m = (Fun mult . Fun x . If Snd(x) = 0 Then 0 Else Fst(x) + (mult (Fst(x), Snd(x) - 1))) In
 Let mult = (zcomb m) In
 (mult (6, 9)) + (mult (3, 2))
+
+(* Curried version of multiplication using Fix *)
+Let mult = (Fix mult . x . (Fun y . If y = 0 Then 0 Else x + ((mult x) (y - 1)))) In
+(mult 6) 9 + (mult 3) 2 
 
 (* Factorial using Z *)
 Let zcomb = (Fun f . (Fun x . f (Fun v . (x x) v)) (Fun x . f (Fun v . (x x) v))) In
