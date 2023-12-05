@@ -1,0 +1,44 @@
+Let x = 3 + 4 In 9 + x
+
+Let x = 3 + 4 In Not x
+
+True Or 78
+
+(Fun (x : Nat) . x + x)
+
+Let double = (Fun (x : Nat) . x + x) In double (double 10)
+
+Let flip = (Fun (x : Bool) . Not x) In flip (flip False)
+
+(* examples from ty.pdf *)
+
+10 = 11 And Not True
+
+(Fun (x : Nat) . x + 2) 32 
+
+Let f = (Fun (x : Nat) . x + 2) In f 10
+
+(Fun (b : Bool) . If b Then 1 Else 0) (True And False)
+
+(Fun (g : (Nat -> Nat)) . (Fun (x : Nat) . g x))
+ 
+(Fun (x : Nat) . (Fun (x : Bool) . Not x))
+
+Let y = 33 In (Fun (x : Nat) . x + y)
+
+(* multiplication, well typed *)
+(Fix mult . (x : Nat * Nat) : Nat . If Fst(x) = 0 Then Snd(x) Else Fst(x) + mult (Fst(x) - 1, Snd(x)))
+
+Let mult = (Fix mult . (x : Nat * Nat) : Nat . If Fst(x) = 0 Then Snd(x) Else Fst(x) + mult (Fst(x) - 1, Snd(x))) In
+(mult (3,2)) + (mult (3,4))
+
+(* functional composition with polymorphic typing *)
+Let compose =
+ (Gen 'a . (Gen 'b . (Gen 'c .
+   (Fun (f : 'b -> 'c) . (Fun (g : 'a -> 'b) . (Fun (x : 'a) . f (g x))))))) In
+Let plustwo = (Fun (x : Nat) . x + 2) In
+Let noteq = (Fun (p : Nat * Nat) . Not(Fst(p) = Snd(p))) In
+Let boolasnat = (Fun (b : Bool) . If b Then 1 Else 0) In
+((((compose<Nat><Nat><Nat> plustwo) plustwo)) 4)
++
+((((compose<Nat * Nat><Bool><Nat>) boolasnat) noteq) (3, 4))
