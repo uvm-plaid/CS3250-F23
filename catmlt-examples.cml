@@ -31,14 +31,3 @@ Let y = 33 In (Fun (x : Nat) . x + y)
 
 Let mult = (Fix mult . (x : Nat * Nat) : Nat . If Fst(x) = 0 Then Snd(x) Else Fst(x) + mult (Fst(x) - 1, Snd(x))) In
 (mult (3,2)) + (mult (3,4))
-
-(* functional composition with polymorphic typing *)
-Let compose =
- (Gen 'a . (Gen 'b . (Gen 'c .
-   (Fun (f : 'b -> 'c) . (Fun (g : 'a -> 'b) . (Fun (x : 'a) . f (g x))))))) In
-Let plustwo = (Fun (x : Nat) . x + 2) In
-Let noteq = (Fun (p : Nat * Nat) . Not(Fst(p) = Snd(p))) In
-Let boolasnat = (Fun (b : Bool) . If b Then 1 Else 0) In
-((((compose<Nat><Nat><Nat> plustwo) plustwo)) 4)
-+
-((((compose<Nat * Nat><Bool><Nat>) boolasnat) noteq) (3, 4))
